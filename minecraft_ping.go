@@ -9,7 +9,7 @@ import (
 	"github.com/whatupdave/mcping"
 )
 
-// PingResult holds info the result
+// PingResult info about the result
 type PingResult struct {
 	isOnline    bool
 	serverIP    string
@@ -29,7 +29,9 @@ func PingServer(ip string, result chan PingResult) {
 	result <- tmp
 }
 
-func loadFileLines(filename string) []string {
+// LoadFileLines loads the given filename
+// and returns the lines as an array
+func LoadFileLines(filename string) []string {
 	bytes, err := ioutil.ReadFile(filename)
 
 	if err != nil {
@@ -57,7 +59,7 @@ func main() {
 
 	// Load the ip file
 	fmt.Println("> Loading file")
-	ips := loadFileLines(os.Args[1])
+	ips := LoadFileLines(os.Args[1])
 
 	// Start pinging the ips
 	fmt.Println("> Pinging ips")
