@@ -44,6 +44,7 @@ func loadFileLines(filename string) []string {
 func main() {
 	fmt.Print("MINECRAFT PINGER\n")
 
+	// Show the usage
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: minecraft_ping [file]")
 
@@ -54,9 +55,11 @@ func main() {
 		os.Exit(0)
 	}
 
+	// Load the ip file
 	fmt.Println("> Loading file")
 	ips := loadFileLines(os.Args[1])
 
+	// Start pinging the ips
 	fmt.Println("> Pinging ips")
 	result := make(chan PingResult)
 	for _, ip := range ips {
@@ -66,6 +69,7 @@ func main() {
 	fmt.Println("> Waiting...")
 	fmt.Println("\n[Server IP]\t[Count]")
 
+	// Wait for the results
 	finished := 0
 	total := len(ips)
 	for finished < total {
