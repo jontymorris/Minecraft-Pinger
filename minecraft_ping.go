@@ -60,7 +60,7 @@ func AdjustStringLength(input string, length int) string {
 }
 
 func main() {
-	fmt.Print("MINECRAFT PINGER\n")
+	fmt.Println("\nMinecraft Pinger")
 
 	// Show the usage
 	if len(os.Args) < 2 {
