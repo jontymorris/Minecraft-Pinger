@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+minecraft_ping
 
 # Test binary, build with `go test -c`
 *.test
