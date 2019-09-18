@@ -20,7 +20,7 @@ type PingResult struct {
 func PingServer(ip string, result chan PingResult) {
 	resp, err := mcping.Ping(ip + ":25565")
 
-	tmp := PingResult{isOnline: true, serverIP: ip, playerCount: resp.Online}
+	tmp := PingResult{isOnline: true, serverIP: AdjustStringLength(ip, 15), playerCount: resp.Online}
 
 	if err != nil {
 		tmp.isOnline = false
@@ -41,6 +41,22 @@ func LoadFileLines(filename string) []string {
 	contents := string(bytes)
 
 	return strings.Split(contents, "\n")
+}
+
+// AdjustStringLength takes in a string, and adjusts it to
+// the given length. May shorten the string, or add in whitespace.
+func AdjustStringLength(input string, length int) string {
+	tmp := ""
+
+	for i := 0; i < length; i++ {
+		if i < len(input) {
+			tmp += string(input[i])
+		} else {
+			tmp += " "
+		}
+	}
+
+	return tmp
 }
 
 func main() {
@@ -69,7 +85,7 @@ func main() {
 	}
 
 	fmt.Println("> Waiting...")
-	fmt.Println("\n[Server IP]\t[Count]")
+	fmt.Println("\n[Server IP]\t\t[Count]")
 
 	// Wait for the results
 	finished := 0
@@ -77,8 +93,9 @@ func main() {
 	for finished < total {
 		server := <-result
 
+		// Only print if people are online
 		if server.isOnline && server.playerCount > 0 {
-			fmt.Println(server.serverIP+":\t", server.playerCount)
+			fmt.Println(server.serverIP, "\t", server.playerCount)
 		}
 
 		finished++
