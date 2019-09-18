@@ -69,7 +69,7 @@ func main() {
 
 		fmt.Println("\nThe file must contain a list of")
 		fmt.Println("minecraft server IP's which are")
-		fmt.Println("seperated by a newline.")
+		fmt.Print("seperated by a newline.\n\n")
 
 		os.Exit(0)
 	}
