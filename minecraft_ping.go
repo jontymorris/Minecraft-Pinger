@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/fatih/color"
 	"github.com/whatupdave/mcping"
 )
 
@@ -60,7 +61,7 @@ func AdjustStringLength(input string, length int) string {
 }
 
 func main() {
-	fmt.Println("\nMinecraft Pinger")
+	color.HiGreen("MINECRAFT PINGER")
 
 	// Show the usage
 	if len(os.Args) < 2 {
@@ -95,7 +96,8 @@ func main() {
 
 		// Only print if people are online
 		if server.isOnline && server.playerCount > 0 {
-			fmt.Println(server.serverIP, "\t", server.playerCount)
+			fmt.Print(server.serverIP, "\t\t ")
+			fmt.Println(server.playerCount)
 		}
 
 		finished++
