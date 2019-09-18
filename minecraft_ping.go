@@ -85,7 +85,7 @@ func main() {
 	}
 
 	fmt.Println("> Waiting...")
-	fmt.Println("\n[Server IP]\t\t[Count]")
+	fmt.Println("\n[Server IP]\t\t[Players]")
 
 	// Wait for the results
 	finished := 0
